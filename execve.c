@@ -9,6 +9,7 @@ void execute_command(char *command)
 {
 	pid_t pid;
 	char **args;
+	int status;
 
 	pid = fork_process();
 
@@ -26,7 +27,7 @@ void execute_command(char *command)
 		/* Copy the command into the array of arguments */
 		args[0] = command;
 		args[1] = NULL;
-		execve(command, args, NULL);
+		execve(args[0], args, NULL);
 
 		/* In case of execution failure */
 		perror("hsh");
@@ -36,11 +37,9 @@ void execute_command(char *command)
 	}
 	else
 	{
-		/* Parent process */
-		wait(NULL);
 
-		/*display_prompt*/
-		display_prompt();
+		/* Parent process */
+		waitpid(pid, &status, 0);
 	}
 	free(command);
 }

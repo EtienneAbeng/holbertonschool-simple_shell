@@ -8,5 +8,5 @@
 void display_prompt(void)
 {
 	/* Display a command prompt */
-	printf("Myshell > ");
+	printf("$ ");
 }

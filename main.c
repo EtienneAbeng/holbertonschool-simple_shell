@@ -9,7 +9,7 @@
 
 int main(void)
 {
-	char *command;
+	char *command = NULL;
 	size_t buf_size = BUF_SIZE;
 	ssize_t read_size;
 
@@ -36,6 +36,4 @@ int main(void)
 	/*Execute the command using exercve*/
 		execute_command(command);
 	}
-
-	return (0);
 }
