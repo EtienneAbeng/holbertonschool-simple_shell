@@ -29,7 +29,7 @@ void execute_command(char *command)
 		execve(command, args, NULL);
 
 		/* In case of execution failure */
-		perror("Execution error");
+		perror("hsh");
 		free(command);
 		free(args);
 		exit(EXIT_FAILURE);
@@ -38,6 +38,9 @@ void execute_command(char *command)
 	{
 		/* Parent process */
 		wait(NULL);
+
+		/*display_prompt*/
+		display_prompt();
 	}
 	free(command);
 }
