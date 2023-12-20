@@ -28,13 +28,13 @@ int main(void)
 		{
 			if (strcmp(array_command[0], "exit") == 0)
 			{
-				exit_shell();
 				builtin = 1;
+				exit_shell();
 			}
 			else if (strcmp(array_command[0], "env") == 0)
 			{
-				print_env();
 				builtin = 1;
+				print_env();
 			}
 		}
 		if (!builtin)
