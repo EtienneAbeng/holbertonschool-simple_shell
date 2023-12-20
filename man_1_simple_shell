@@ -1,0 +1,55 @@
+# Hi Legends 👋
+
+Sure, here is the man page for our simple shell:
+
+## NAME
+simple_shell - A simple UNIX shell
+
+## SYNOPSIS
+simple_shell [options] [command] [argument ...]
+
+## DESCRIPTION
+
+ simple_shell is a simple UNIX shell that executes commands read from the standard input or from a file. It provides a basic command line interface with the following features:
+
+- Handling pipes (|)
+- Handling redirection (<, >, >>)
+- Handling environment variables ($PATH)
+- Handling background processes (&)
+- Handling signals (SIGINT, SIGKILL)
+- Handling the exit command (exit)
+
+## OPTIONS
+-h, --help       Display this help message and exit.
+-V, --version    Display the program version and exit.
+
+COMMANDS
+
+simple_shell supports a limited number of built-in commands:
+
+- cd [directory] : Change the current working directory.
+- echo [string] : Print the specified string to the standard output.
+- env Print the current environment variables.
+- exit : Exit the shell with the specified status.
+- help : Display help for a specific command.
+- history : Display the history of previously executed commands.
+- kill : [process ID] Send a signal to the specified process.
+- pwd :  Print the current working directory.
+- set : Set or display environment variables.
+- stop :  [process ID] Stop the specified background job.
+- wait :  [process ID] Wait for the specified process to finish.
+
+EXAMPLES
+
+Execute the ls command
+ls
+
+Execute the ls command in the /tmp directory
+cd /tmp
+ls
+
+Execute the ls command and redirect the output to a file
+ls > files.txt
+
+Exit the shell
+exit
