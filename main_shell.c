@@ -5,46 +5,60 @@
  */
 int main(void)
 {
-	char **array_command;
+	char **arrayofcomand;
 	char *command;
-	int builtin = 0;
-	int inter_mode = isatty(STDIN_FILENO);
+	int isbuiltin = 0;
+	int i = 0;
+	int interactive = isatty(STDIN_FILENO);
+
+	builtin_t builtins[] = {
+		{"exit", exit_shell},
+		{"env", print_env},
+		{NULL, NULL}
+	};
 
 	while (1)
 	{
-		if (inter_mode)
+		if (interactive)
+		{
 			buffer();
+		}
 
 		command = read_command();
-		if (!command)
+		if (command == NULL)
 		{
-			if (!inter_mode)
+			if (!interactive)
+			{
 				break;
+			}
 			continue;
 		}
 
-		array_command = split_command(command);
-		if (array_command && array_command[0])
+		arrayofcomand = split_command(command);
+
+		i = 0;
+		while (builtins[i].cmd != NULL)
 		{
-			if (strcmp(array_command[0], "exit") == 0)
+			if (strcmp(builtins[i].cmd, arrayofcomand[0]) == 0)
 			{
-				builtin = 1;
-				exit_shell();
+				isbuiltin = 1;
+				builtins[i].func();
+				free(command);
+				free(arrayofcomand);
+				break;
 			}
-			else if (strcmp(array_command[0], "env") == 0)
-			{
-				builtin = 1;
-				print_env();
-			}
+			i++;
 		}
-
-		if (!builtin && array_command)
-			execute_command(array_command);
-
-		free(command);
-		free(array_command);
-		builtin = 0;
+		if (!isbuiltin)
+		{
+			if (arrayofcomand != NULL)
+			{
+				execute_command(arrayofcomand);
+			}
+			free(command);
+			free(arrayofcomand);
+		}
+		isbuiltin = 0;
 	}
-
 	return (0);
 }

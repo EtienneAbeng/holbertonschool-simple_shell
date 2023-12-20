@@ -10,6 +10,17 @@
 #include <sys/stat.h>
 extern char **environ;
 #define INITIAL_TOKENS 64
+/**
+ * struct builtIn - is a structure that contains 2 elements
+ * @cmd: is a pointer to chatracter
+ * @func: is a pointer to function
+ * Description: this structure defines a built-in shell command
+ */
+typedef struct builtIn
+{
+	char *cmd;
+	int (*func)(void);
+} builtin_t;
 int main(void);
 void buffer(void);
 int exit_shell(void);
