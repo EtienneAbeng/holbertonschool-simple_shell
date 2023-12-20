@@ -1,27 +1,12 @@
-# Learning Objectives 
+![Logo](https://uploads-ssl.webflow.com/6105315644a26f77912a1ada/63eea844ae4e3022154e2878_Holberton.png)
 
-At the end of this project, you are expected to be able to explain to anyone, without the help of Google:
+# **C – Simple Shell**
 
-## General
+## **Description**
+This is a basic implementation of a shell in C . The shell allows users to execute commands, supports basic functionalities like navigating directories, and handles some built-in commands. It provides a command-line interface where users can interact with the operating system by entering commands.
 
-1. Who designed and implemented the original Unix operating system
-2. Who wrote the first version of the UNIX shell
-3. Who invented the B programming language (the direct predecessor to the C programming language)
-4. Who is Ken Thompson
-5. How does a shell work
-6. What is a pid and a ppid
-7. How to manipulate the environment of the current process
-8. What is the difference between a function and a system call
-9. How to create processes
-10. What are the three prototypes of main
-11. How does the shell use the PATH to find the programs
-12. How to execute another program with the execve system call
-13. How to suspend the execution of a process until one of its children terminates
-14. What is EOF / “end-of-file”?
 
-# Requirements
-## General
-
+## **Requirements**
 - Allowed editors: vi, vim, emacs
 - All your files will be compiled on Ubuntu 20.04 LTS using gcc, using the options -Wall -Werror -Wextra -pedantic -std=gnu89
 - All your files should end with a new line
@@ -31,42 +16,11 @@ At the end of this project, you are expected to be able to explain to anyone, wi
 - No more than 5 functions per file
 - All your header files should be include guarded
 - Use system calls only when you need to (why?)
-
-# GitHub
-
-There should be one project repository per group. If you clone/fork/whatever a project repository with the same name before the second deadline, you risk a 0% score.~~~~
-
-# More Info
-
-## Output
-
-- Unless specified otherwise, your program must have the exact same output as sh (/bin/sh) as well as the exact same error output.
-- The only difference is when you print an error, the name of the program must be equivalent to your argv[0] (See below)
-
-Example of error with sh:
-
-```
-$ echo "qwerty" | /bin/sh
-/bin/sh: 1: qwerty: not found
-$ echo "qwerty" | /bin/../bin/sh
-/bin/../bin/sh: 1: qwerty: not found
-$ 
-```
-
-Same error with your program hsh:
-
-```
-$ echo "qwerty" | ./hsh
-./hsh: 1: qwerty: not found
-$ echo "qwerty" | ./././hsh
-./././hsh: 1: qwerty: not found
-$
-```
-## List of allowed functions and system calls+
-
- -  all functions from string.h
--  access (man 2 access)
--  (man 2 chdir)- close (man 2 close)
+## **Authorized functions and macros**
+- all functions from string.h
+- access (man 2 access)
+- chdir (man 2 chdir)
+- close (man 2 close)
 - closedir (man 3 closedir)
 - execve (man 2 execve)
 - exit (man 3 exit)
@@ -100,47 +54,34 @@ $
 - wait3 (man 2 wait3)
 - wait4 (man 2 wait4)
 - write (man 2 write)
+## **Process description**
 
-##Compilation
+Here's a brief description of how the shell works:
 
-Your shell will be compiled this way:
+1. **Parent Process Creation:**
+   When the user runs the program, the parent process is created.
+
+2. **Terminal Check:**
+   The `isatty()` function is used with the `STDIN_FILENO` file descriptor (fd) to test if there is an open file descriptor referring to a terminal. If `isatty()` returns 1, the prompt is shown using `write()` with `STDOUT_FILENO` as fd, and the program waits for user input.
+
+3. **Command Parsing:**
+   When the user types a command, the `getline()` function reads the entire line from the stream, and the `strtok()` function breaks the input command into a sequence of non-empty tokens.
+
+4. **Child Process Creation:**
+   A separate child process is created using `fork()` to execute the inputted command. Unless specified otherwise, the parent process waits for the child to exit before continuing.
+
+5. **Command Execution:**
+   After tokenizing the command, the `execve()` function is used to bring and execute it. Once executed, the program frees all allocated memory using `free()`.
+
+6. **Return to Main Process:**
+   Finally, the program returns to the main process. It prints the prompt and waits for another user input.
+   ## **Compilation**
+•	Your code will be compiled this way:
+```
+$ gcc -Wall -Werror -Wextra -pedantic -std=gnu89 -Wno-format *.c
 
 ```
-gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
-```
-## Testing
-
-Your shell should work like this in interactive mode:
-
-```
-$ ./hsh
-($) /bin/ls
-hsh main.c shell.c
-($)
-($) exit
-$
-```
-
-But also in non-interactive mode:
-
-```
-$ echo "/bin/ls" | ./hsh
-hsh main.c shell.c test_ls_2
-$
-$ cat test_ls_2
-/bin/ls
-/bin/ls
-$
-$ cat test_ls_2 | ./hsh
-hsh main.c shell.c test_ls_2
-hsh main.c shell.c test_ls_2
-$
-```
-    
-## Checks
-
-The Checker will be released at the end of the project (1-2 days before the deadline). We strongly encourage the entire class to work together to create a suite of checks covering both regular tests and edge cases for each task. See task 8. Test suite.
-
-After the deadline, you will need to fork the repository if it’s not on your Github account to be able to be corrected by the checker.
-
+## Authors
+- [Etienne Abeng]((https://www.github.com/EtienneAbeng)
+- [abbassi mohamed ayoub](https://www.github.com/abbassimedayoub)
 
