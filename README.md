@@ -82,6 +82,6 @@ $ gcc -Wall -Werror -Wextra -pedantic -std=gnu89 -Wno-format *.c
 
 ```
 ## Authors
-- [Etienne Abeng]((https://www.github.com/EtienneAbeng)
+- [Etienne Abeng](https://www.github.com/EtienneAbeng)
 - [abbassi mohamed ayoub](https://www.github.com/abbassimedayoub)
 
