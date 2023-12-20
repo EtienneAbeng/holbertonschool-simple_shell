@@ -7,5 +7,4 @@
 void buffer(void)
 {
 	printf("$ ");
-       	fflush(stdout);
 }
