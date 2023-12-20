@@ -6,7 +6,7 @@
  */
 void buffer(void)
 {
-	const char *prompt = "shell >>";
+	const char *prompt = "$ ";
 	size_t prompt_length = strlen(prompt);
 
 	write(STDOUT_FILENO, prompt, prompt_length);
