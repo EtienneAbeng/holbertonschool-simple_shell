@@ -6,8 +6,6 @@
  */
 void buffer(void)
 {
-	const char *prompt = "#cisfun$ ";
-	size_t prompt_length = strlen(prompt);
-
-	write(STDOUT_FILENO, prompt, prompt_length);
+	printf("$ ");
+       	fflush(stdout);
 }
