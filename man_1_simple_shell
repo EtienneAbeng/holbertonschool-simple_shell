@@ -53,3 +53,6 @@ ls > files.txt
 
 Exit the shell
 exit
+.SH AUTHORS
+- Abbassi Mohamed Ayoub
+- Abeng Etienne
