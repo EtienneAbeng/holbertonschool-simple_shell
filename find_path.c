@@ -1,4 +1,9 @@
 #include "shell.h"
+/**
+ * find_path - function that find the path
+ * @input_cmd: the inputede command
+ * Return: the path to be excuted
+ */
 char *find_path(char *input_cmd)
 {
 	struct stat st;
