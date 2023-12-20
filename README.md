@@ -4,6 +4,7 @@
 
 ## **Description**
 This is a basic implementation of a shell in C . The shell allows users to execute commands, supports basic functionalities like navigating directories, and handles some built-in commands. It provides a command-line interface where users can interact with the operating system by entering commands.
+![flowchart](https://github.com/EtienneAbeng/holbertonschool-simple_shell/assets/134635340/780cf242-ed87-4fc8-8ad4-13c038ffa895)
 
 
 ## **Requirements**
