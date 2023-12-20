@@ -14,17 +14,17 @@ int main(void)
 	{
 		if (inter_mode)
 			buffer();
+
 		command = read_command();
-		if (command == NULL)
+		if (!command)
 		{
 			if (!inter_mode)
-			{
 				break;
-			}
 			continue;
 		}
+
 		array_command = split_command(command);
-		if (array_command != NULL && array_command[0] != NULL)
+		if (array_command && array_command[0])
 		{
 			if (strcmp(array_command[0], "exit") == 0)
 			{
@@ -37,17 +37,14 @@ int main(void)
 				print_env();
 			}
 		}
-		if (!builtin)
-		{
-			if (array_command != NULL)
-			{
-				execute_command(array_command);
-			}
-			free(command);
-			free(array_command);
-		}
+
+		if (!builtin && array_command)
+			execute_command(array_command);
+
+		free(command);
+		free(array_command);
 		builtin = 0;
 	}
-		return (0);
-}
 
+	return (0);
+}

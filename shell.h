@@ -12,7 +12,7 @@ extern char **environ;
 #define INITIAL_TOKENS 64
 int main(void);
 void buffer(void);
-void exit_shell(void);
+int exit_shell(void);
 int print_env(void);
 char *read_command(void);
 char **split_command(char *input);
