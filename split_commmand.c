@@ -1,6 +1,6 @@
 #include "shell.h"
 /**
- * split_cmd - function that split the command into array
+ * split_command - function that split the command into array
  *@input: the user input to be parsed
  *Return: an array of strings
  */
