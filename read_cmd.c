@@ -1,37 +1,26 @@
 #include "shell.h"
+
 /**
- * read_command - function that read the givven command
- * Return: the command
+ * read_command - func that read the input cmd
+ *
+ * Return: string
  */
+
 char *read_command(void)
 {
-	char *str = NULL;
-	size_t siz = 0;
-	ssize_t input = getline(&str, &siz, stdin);
+	char *string = NULL;
+	size_t size = 0;
+	int input = getline(&string, &size, stdin);
 
 	if (input == -1)
 	{
-		perror("Error reading input\n");
-		free(str);
-		exit(EXIT_FAILURE);
+		free(string);
+		exit(0);
 	}
-	if (str[input - 1] == '\n')
-	{
-		str[input - 1] = '\0';
-	}
-	else
-	{
-		char *temp = realloc(str, input + 1);
 
-		if (temp == NULL)
-		{
-			perror("Error reallocating memory\n");
-			free(str);
-			exit(EXIT_FAILURE);
-		}
-		str = temp;
-		str[input - 1] = '\0';
-		input++;
+	if (string[input - 1] == '\n')
+	{
+		string[input - 1] = '\0';
 	}
-	return (str);
+	return (string);
 }

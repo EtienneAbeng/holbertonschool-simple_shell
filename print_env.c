@@ -3,7 +3,7 @@
  * print_env - function that prints the env
  * Return: the envirments printed
  */
-void print_env(void)
+int print_env(void)
 {
 	int i = 0;
 
@@ -12,4 +12,5 @@ void print_env(void)
 		printf("%s\n", environ[i]);
 		i++;
 	}
+	return (0)
 }

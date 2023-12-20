@@ -13,7 +13,7 @@ extern char **environ;
 int main(void);
 void buffer(void);
 void exit_shell(void);
-void print_env(void);
+int print_env(void);
 char *read_command(void);
 char **split_command(char *input);
 int execute_command(char **array);

@@ -1,42 +1,31 @@
 #include "shell.h"
 /**
- * split_command - function that split input into
- * many tokens
- * @input: the command entred to be splited
- * Return: array of comands
+ * split_cmd - function that split the command into array
+ *@input: the user input to be parsed
+ *Return: an array of strings
  */
 char **split_command(char *input)
 {
 	char *tok;
-	char **tokens = NULL;
+	char **tokens;
 	int i = 0;
-	int max_tokens = INITIAL_TOKENS;
+	int max_tokens = 64;
 
-	tokens = malloc(max_tokens * sizeof(char *));
+	tokens = malloc(sizeof(char *) * max_tokens);
 	if (tokens == NULL)
 	{
 		perror("malloc_fails");
+		free(tokens);
+		free(input);
 		exit(EXIT_FAILURE);
 	}
-	tok = strtok(input, " \t\n");
+	tok = strtok(input, " ");
 	while (tok != NULL)
 	{
-		tokens[i] = strdup(tok);
-		if (tokens[i] == NULL)
-		{
-			perror("strdup_fails");
-			while (i > 0)
-			{
-				free(tokens[--i]);
-			}
-			free(tokens);
-			free(input);
-			exit(EXIT_FAILURE);
-		}
+		tokens[i] = tok;
 		i++;
 		tok = strtok(NULL, " \t\n");
 	}
 	tokens[i] = NULL;
 	return (tokens);
 }
-
