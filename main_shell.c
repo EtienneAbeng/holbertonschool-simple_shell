@@ -8,7 +8,6 @@ int main(void)
 	char **array_command;
 	char *command;
 	int builtin = 0;
-	int i;
 	int inter_mode = isatty(STDIN_FILENO);
 
 	while (1)
@@ -38,18 +37,17 @@ int main(void)
 				builtin = 1;
 			}
 		}
-		if (!builtin && array_command != NULL)
+		if (!builtin)
 		{
-			execute_command(array_command);
-			for (i = 0; array_command[i] != NULL; ++i)
+			if (array_command != NULL)
 			{
-				free(array_command[i]);
+				execute_command(array_command);
 			}
+			free(command);
 			free(array_command);
 		}
-		free(command);
 		builtin = 0;
 	}
-	return (0);
+		return (0);
 }
 
