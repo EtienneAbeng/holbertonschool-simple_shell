@@ -6,5 +6,5 @@
  */
 void buffer(void)
 {
-	printf("$ ");
+	printf("top_shell>> ");
 }
